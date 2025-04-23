@@ -1,0 +1,20 @@
+UPDATE:
+Got the two programs condensed down into one called “LiCA_and_local_schedule_threaded”
+This program listens for UDP commands from LiCA, and runs an internal schedule.  If LiCA and the local schedule say it should be on, it sets GPIO Board Pin 11 (GPIO17) to HIGH.  It also allows for an override, where it will force PIN11 to High for a set amount of time.
+Code is saved below.
+From LiCA, send an “on” string to the IP address of the Pi, to the port listed in the code.
+For an override, send an “override” string.
+To alter the schedule, change the schedule within the python.  This uses the schedule library, which is very human readable.
+Program automagically launches in a terminal browser when the Pi reboots.
+To setup up autostart, followed instructions here: On Raspberry Pi - Auto start terminal after login? - Stack Overflow
+
+In short, ran sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+Added at end of file 
+@lxterminal -e sudo python3 LiCA_and_local_schedule_threaded.py
+
+Pi Login:
+Store Username and Password here.
+
+VNC viewer is installed on the Pi for remote access.  Configured to run even with no monitor attached.  To setup, sudo raspi-config, go to display options, and set VNC resolution.
+
+172.18.14.228, using port 5005 (for now)
